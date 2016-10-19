@@ -78,13 +78,14 @@ void draw () {
   //main image
   image (background, 0, 0, width, height);
   image (skin1, 5, 123);
+  image (blush1, 150, 293);
   
   //text
   fill(0);
   textSize(30);
   text("Pick and Choose!", 520, 220);
   textSize(20);
-  text("Press Spacebar to Reset", 620, 570);
+  text("Press 'Spacebar' to Reset", 610, 570);
 
   //buttons
   image (button1, 400, 20, 50, 50);
@@ -129,15 +130,19 @@ void draw () {
       println ("brow4");
     } else if (mouseX > 460 && mouseX < 630 && mouseY > 90 && mouseY < 125) {
       eyeSelect = 1;
+      image (lash1, 126, 253);
       println ("eye1");
     } else if (mouseX > 460 && mouseX < 630 && mouseY > 130 && mouseY < 165) {
       eyeSelect = 2;
+      image (lash1, 126, 253);
       println ("eye2");
     } else if (mouseX > 660 && mouseX < 830 && mouseY > 90 && mouseY < 125) {
       eyeSelect = 3;
+      image (lash1, 126, 253);
       println ("eye3");
     } else if (mouseX > 660 && mouseX < 830 && mouseY > 90 && mouseY < 165) {
       eyeSelect = 4;
+      image (lash1, 126, 253);
       println ("eye4");
     } else if (mouseX > 500 && mouseX < 570 && mouseY > 240 && mouseY < 275) {
       lipsSelect = 1;
@@ -175,18 +180,19 @@ void draw () {
     } else if (mouseX > 410 && mouseX < 440 && mouseY > 20 && mouseY < 70) {
       skinSelect = 1;
       println ("skin1");
+      image (blush1, 150, 293);
     } else if (mouseX > 410 && mouseX < 440 && mouseY > 80 && mouseY < 130) {
       skinSelect = 2;
       println ("skin2");
+      image (blush1, 150, 293);
     } else if (mouseX > 410 && mouseX < 440 && mouseY > 140 && mouseY < 190) {
       skinSelect = 3;
       println ("skin3");
+      image (blush1, 150, 293);
     } else if (mouseX > 410 && mouseX < 740 && mouseY > 200 && mouseY < 260) {
       skinSelect = 4;
       println ("skin4");
-    } else if (mouseX > 740 && mouseX < 840 && mouseY > 540 && mouseY < 570) {
-      skinSelect = 1;
-      println ("text");
+      image (blush1, 150, 293);
     }
   }
   tools();
@@ -198,6 +204,7 @@ void keyPressed() {
     skinSelect = 0;
     eyeSelect = 0;
     lipsSelect = 0;
+    image (blush1, 150, 293);
     println("spacebar");
   }
 }
@@ -207,15 +214,19 @@ void tools() {
   switch(skinSelect) {
   case 1:
     image(skin1, skinX, skinY);
+    image (blush1, 150, 293);
     break;
   case 2:
     image(skin2, skinX, skinY);
+    image (blush1, 150, 293);
     break;
   case 3:
     image(skin3, skinX, skinY);
+    image (blush1, 150, 293);
     break;
   case 4:
     image(skin4, skinX, skinY);
+    image (blush1, 150, 293);
     break;
   }
   switch (lipsSelect) {
@@ -244,15 +255,19 @@ void tools() {
   switch (eyeSelect) {
   case 1:
     image(eye1, eyeX, eyeY);
+    image (lash1, 126, 253);
     break;
   case 2:
     image(eye2, eyeX, eyeY);
+    image (lash1, 126, 253);
     break;
   case 3:
     image(eye3, eyeX, eyeY);
+    image (lash1, 126, 253);
     break;
   case 4:
     image(eye4, eyeX, eyeY);
+    image (lash1, 126, 253);
     break;
   }
   switch (browSelect) {
