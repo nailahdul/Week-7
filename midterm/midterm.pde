@@ -1,3 +1,6 @@
+import processing.sound.*;
+SoundFile file;
+
 int skinSelect = 0;
 int browSelect = 0;
 int eyeSelect = 0;
@@ -12,8 +15,9 @@ int eyeX = 150;
 int eyeY = 260;
 int lipsX = 196;
 int lipsY = 370;
-int hairX = 80;
-int hairY = 112;
+int hairX = 81;
+int hairY = 111;
+
 
 PImage background;
 PImage skin1, skin2, skin3, skin4;
@@ -30,8 +34,15 @@ void setup() {
   size (850, 576);
   Poetsenone = createFont ("Poetsenone.ttf", 30);
   textFont (Poetsenone);
+  
+  //BG
   background = loadImage("background.png");
-  image (background, 0, 0, width, height);
+  
+  //music
+  file = new SoundFile(this, "backgroundmusic.mp3");
+  file.play();
+  
+  //load images
   lash1 = loadImage("lash1.png");
   blush1 = loadImage("blush1.png");
   button1 = loadImage("button1.png");
@@ -64,13 +75,16 @@ void setup() {
 }
 
 void draw () {
+  //main image
+  image (background, 0, 0, width, height);
+  image (skin1, 5, 123);
+  
   //text
   fill(0);
   textSize(30);
   text("Pick and Choose!", 520, 220);
-  
-  //main image
-  image (skin1, 5, 123);
+  textSize(20);
+  text("Press Spacebar to Reset", 620, 570);
 
   //buttons
   image (button1, 400, 20, 50, 50);
@@ -101,7 +115,7 @@ void draw () {
   //rect (740, 540, 100, 30);
 
   if (mousePressed) {
-    if(mouseX > 460 && mouseX < 635 && mouseY > 23 && mouseY < 55) {
+    if (mouseX > 460 && mouseX < 635 && mouseY > 23 && mouseY < 55) {
       browSelect = 1;
       println ("brow1");
     } else if (mouseX > 460 && mouseX < 635 && mouseY > 60 && mouseY < 80) {
@@ -169,7 +183,7 @@ void draw () {
       println ("skin3");
     } else if (mouseX > 410 && mouseX < 740 && mouseY > 200 && mouseY < 260) {
       skinSelect = 4;
-      println ("skin4"); 
+      println ("skin4");
     } else if (mouseX > 740 && mouseX < 840 && mouseY > 540 && mouseY < 570) {
       skinSelect = 1;
       println ("text");
@@ -177,84 +191,96 @@ void draw () {
   }
   tools();
 }
+void keyPressed() {
+  if (key == ' ') {
+    hairSelect = 0;
+    browSelect = 0;
+    skinSelect = 0;
+    eyeSelect = 0;
+    lipsSelect = 0;
+    println("spacebar");
+  }
+}
 
 void tools() {
-  switch(skinSelect){
-    case 1:
+ 
+  switch(skinSelect) {
+  case 1:
     image(skin1, skinX, skinY);
     break;
-    case 2:
+  case 2:
     image(skin2, skinX, skinY);
     break;
-    case 3:
+  case 3:
     image(skin3, skinX, skinY);
     break;
-    case 4:
+  case 4:
     image(skin4, skinX, skinY);
     break;
   }
-  switch (lipsSelect){
-    case 1:
+  switch (lipsSelect) {
+  case 1:
     image(lips1, lipsX, lipsY);
     break;
-    case 2:
+  case 2:
     image(lips2, lipsX, lipsY);
     break;
-    case 3:
+  case 3:
     image(lips3, lipsX, lipsY);
     break;
-    case 4:
+  case 4:
     image(lips4, lipsX, lipsY);
     break;
-    case 5:
+  case 5:
     image(lips5, lipsX, lipsY);
     break;
-    case 6:
+  case 6:
     image(lips6, lipsX, lipsY);
     break;
-    case 7:
+  case 7:
     image(lips7, lipsX, lipsY);
-    break; 
+    break;
   } 
-  switch (eyeSelect){
-    case 1:
+  switch (eyeSelect) {
+  case 1:
     image(eye1, eyeX, eyeY);
     break;
-    case 2:
+  case 2:
     image(eye2, eyeX, eyeY);
     break;
-    case 3:
+  case 3:
     image(eye3, eyeX, eyeY);
     break;
-    case 4:
+  case 4:
     image(eye4, eyeX, eyeY);
     break;
   }
-  switch (browSelect){
-    case 1:
+  switch (browSelect) {
+  case 1:
     image(brow1, browX, browY);
     break;
-    case 2:
+  case 2:
     image(brow2, browX, browY);
     break;
-    case 3:
+  case 3:
     image(brow3, browX, browY);
     break;
-    case 4:
+  case 4:
     image(brow4, browX, browY);
     break;
-  } 
-  switch (hairSelect){
-    case 1:
+  }
+  
+   switch (hairSelect) {
+  case 1:
     image(hair1, hairX, hairY);
     break;
-    case 2:
+  case 2:
     image(hair2, hairX, hairY);
     break;
-    case 3:
+  case 3:
     image(hair3, hairX, hairY);
     break;
-    case 4: 
+  case 4: 
     image(hair4, hairX, hairY);
     break;
   }  
