@@ -1,5 +1,7 @@
-import processing.sound.*;
-SoundFile file;
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer player;
 
 int skinSelect = 0;
 int browSelect = 0;
@@ -18,7 +20,6 @@ int lipsY = 370;
 int hairX = 81;
 int hairY = 111;
 
-
 PImage background;
 PImage skin1, skin2, skin3, skin4;
 PImage button1, button2, button3, button4;
@@ -30,18 +31,21 @@ PImage hair1, hair2, hair3, hair4;
 
 PFont Poetsenone;
 
-void setup() {
+void setup() {  
   size (850, 576);
+
+  //music
+  minim = new Minim(this);
+  player = minim.loadFile("music.mp3");
+  player.play();
+
+  //text
   Poetsenone = createFont ("Poetsenone.ttf", 30);
   textFont (Poetsenone);
-  
+
   //BG
   background = loadImage("background.png");
-  
-  //music
-  file = new SoundFile(this, "backgroundmusic.mp3");
-  file.play();
-  
+
   //load images
   lash1 = loadImage("lash1.png");
   blush1 = loadImage("blush1.png");
@@ -79,13 +83,24 @@ void draw () {
   image (background, 0, 0, width, height);
   image (skin1, 5, 123);
   image (blush1, 150, 293);
-  
+
+  //reference rect (490, 485, 80, 20);
+
   //text
   fill(0);
   textSize(30);
   text("Pick and Choose!", 520, 220);
   textSize(20);
-  text("Press 'Spacebar' to Reset", 610, 570);
+  text("Help!", 465, 500);
+
+  //text hover
+  if (dist(mouseX, mouseY, 490, 500)<25) {
+    fill(0);
+    text("'spacebar to' reset", 530, 500);
+    text("'s' to save", 530, 520);
+    text("'p' to pause music", 530, 540);
+    text("'r' to resume music", 530, 560);
+  }
 
   //buttons
   image (button1, 400, 20, 50, 50);
@@ -111,9 +126,6 @@ void draw () {
   image (hair2, 500, 340, 100, 125);
   image (hair3, 610, 340, 100, 125);
   image (hair4, 720, 340, 100, 125);
-
-
-  //rect (740, 540, 100, 30);
 
   if (mousePressed) {
     if (mouseX > 460 && mouseX < 635 && mouseY > 23 && mouseY < 55) {
@@ -207,10 +219,19 @@ void keyPressed() {
     image (blush1, 150, 293);
     println("spacebar");
   }
+  if (key== 's') {
+    save("image.jpg");
+  }
+  if (key == 'p') {
+    player.pause();
+  } else if (key == 'r') {
+    player.play();
+  }
 }
 
+
 void tools() {
- 
+
   switch(skinSelect) {
   case 1:
     image(skin1, skinX, skinY);
@@ -284,8 +305,8 @@ void tools() {
     image(brow4, browX, browY);
     break;
   }
-  
-   switch (hairSelect) {
+
+  switch (hairSelect) {
   case 1:
     image(hair1, hairX, hairY);
     break;
@@ -298,5 +319,5 @@ void tools() {
   case 4: 
     image(hair4, hairX, hairY);
     break;
-  }  
+  }
 }
