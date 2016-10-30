@@ -1,3 +1,7 @@
+//Nailah Duliepre. 
+//This is a makeup game consisting of buttons that control eye color, eyebrows, lipstick, hair, and skin tone.
+//The player will be able to control music, reset the game, and save the image that they make.
+
 import ddf.minim.*;
 
 Minim minim;
@@ -91,15 +95,16 @@ void draw () {
   textSize(30);
   text("Pick and Choose!", 520, 220);
   textSize(20);
-  text("Help!", 465, 500);
+  text("Help!", 10, 20);
+
 
   //text hover
-  if (dist(mouseX, mouseY, 490, 500)<25) {
+  if (dist(mouseX, mouseY, 20, 0)<40) {
     fill(0);
-    text("'spacebar to' reset", 530, 500);
-    text("'s' to save", 530, 520);
-    text("'p' to pause music", 530, 540);
-    text("'r' to resume music", 530, 560);
+    text("'spacebar' to reset",70, 20);
+    text("'s' to save", 70, 40);
+    text("'p' to pause music", 70, 60);
+    text("'r' to resume music", 70, 80);
   }
 
   //buttons
@@ -126,7 +131,8 @@ void draw () {
   image (hair2, 500, 340, 100, 125);
   image (hair3, 610, 340, 100, 125);
   image (hair4, 720, 340, 100, 125);
-
+  
+  //these are the directions for what the code to do when the buttons are clicked
   if (mousePressed) {
     if (mouseX > 460 && mouseX < 635 && mouseY > 23 && mouseY < 55) {
       browSelect = 1;
@@ -208,6 +214,8 @@ void draw () {
     }
   }
   tools();
+//these are the key commands for resetting, saving, and pausing and playing music
+
 }
 void keyPressed() {
   if (key == ' ') {
@@ -228,7 +236,7 @@ void keyPressed() {
     player.play();
   }
 }
-
+//the are a set of instructions for the code to do when you click in that area
 
 void tools() {
 
